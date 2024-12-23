@@ -1,0 +1,30 @@
+families:
+  - parents: [逢沢寛, 祖母(不明)]
+    children: [逢沢英雄]
+  - parents: [逢沢英雄, 母(不明)]
+    children: [逢沢一郎]
+  - parents: [逢沢一郎, 妻(不明)]
+    children: [子(不明)]
+
+
+people:
+  逢沢寛:
+    class: [male]
+  逢沢英雄:
+    class: [male]
+  逢沢一郎:
+    class: [male]
+  祖母(不明):
+    class: [female]
+  母(不明):
+    class: [female]
+  妻(不明):
+    class: [female]
+  子(不明):
+    class: [female]
+
+styles:
+  male:
+    color: blue
+  female:
+    color: red

@@ -1,0 +1,21 @@
+families:
+  - parents: [父(不明), 母(不明)]
+    children: [青柳陽一郎]
+  - parents: [青柳陽一郎, 妻(不明)]
+
+
+people:
+  父(不明):
+    class: [male]
+  母(不明):
+    class: [female]
+  青柳陽一郎:
+    class: [male]
+  妻(不明):
+    class: [female]
+
+styles:
+  male:
+    color: blue
+  female:
+    color: red

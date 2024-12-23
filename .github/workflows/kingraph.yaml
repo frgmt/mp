@@ -1,0 +1,45 @@
+name: Generate Kingraph SVG
+
+on:
+  push:
+    paths:
+      - '家系図/**/*.yml'
+
+jobs:
+  generate-svg:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      - name: Set up Git user
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config --local core.quotepath false
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '16'
+      - name: Install Node.js dependencies
+        run: npm install
+      - name: Run Kingraph
+        run: |
+          changed_files=$(/usr/bin/git diff --name-only ${{ github.event.before }} ${{ github.sha }})
+          while read -r file; do
+            if [[ $file == *.yml ]]; then
+              output="${file%.yml}.svg"
+              echo "Processing $file -> $output"
+              npx kingraph "$file" > "$output"
+            fi
+          done <<< "$changed_files"
+
+      - name: Commit and push changes
+        if: ${{ github.ref_name == 'main' }}
+        run: |
+          /usr/bin/git add **/*.svg
+          /usr/bin/git commit -m "Update SVG files for changed YAML"
+          /usr/bin/git push
