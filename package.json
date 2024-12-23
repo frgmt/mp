@@ -1,0 +1,8 @@
+{
+  "name": "member-of-parliament",
+  "version": "1.0.0",
+  "description": "議員一覧",
+  "dependencies": {
+    "kingraph": "github:rstacruz/kingraph"
+  }
+}
